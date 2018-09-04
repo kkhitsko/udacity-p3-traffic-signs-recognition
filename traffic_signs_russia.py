@@ -23,9 +23,9 @@ from keras.layers.convolutional import Conv2D
 from keras.layers.pooling import MaxPooling2D
 from keras import backend as K
 
-train_flag = False
-test_flag = False
-show_examples = False
+train_flag = True
+test_flag = True
+show_examples = True
 
 # input image dimensions
 img_rows, img_cols = 48, 48
@@ -82,7 +82,7 @@ print(type(X_train),type(y_train))
 print(X_train.shape, y_train.shape)
 #exit(1)
 
-#signnames_file = 'numbers_to_classes.csv'
+#signnames_file = 'dicts/numbers_to_classes.csv'
 #signs_dict = {}
 #with open(signnames_file) as signnames:
 #    reader = csv.DictReader(signnames, delimiter=',')
@@ -90,7 +90,7 @@ print(X_train.shape, y_train.shape)
 #        signs_dict[int(row['class_number'])] = row['sign_class']
 
 
-whitelist_file = 'whitelist_classes.csv'
+whitelist_file = 'dicts/whitelist_classes.csv'
 whitelist_dict = {}
 with open(whitelist_file) as whitenames:
     reader = csv.DictReader(whitenames, delimiter=',')
@@ -119,8 +119,8 @@ if show_examples:
 
     #plt.show()
 
-EPOCHS = 4
-BATCH_SIZE = 512
+EPOCHS = 5
+BATCH_SIZE = 128
 
 
 # convert class vectors to binary class matrices
@@ -215,7 +215,7 @@ X_mydata = normImage(batch_x)
 Y_testdata = np.zeros(shape=(batch_size,))
 print(Y_testdata)
 
-testresults_file = 'custom_images/russia/results2.csv'
+testresults_file = 'images/russia/results2.csv'
 
 with open(testresults_file) as testresults:
     reader = csv.DictReader(testresults, delimiter=',')

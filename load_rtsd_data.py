@@ -9,7 +9,7 @@ import numpy as np
 stop_classes = [3,5,6,10,11,13,15,20,21,22,30,31,32,36,50,51,52,54,59,62]
 
 
-whitelist_file = 'whitelist_classes.csv'
+whitelist_file = 'dicts/whitelist_classes.csv'
 whitelist_dict = {}
 with open(whitelist_file) as whitenames:
     reader = csv.DictReader(whitenames, delimiter=',')
