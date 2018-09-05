@@ -231,10 +231,28 @@ print(Y_testdata)
 # convert class vectors to binary class matrices
 Y_testdata = keras.utils.to_categorical(Y_testdata, n_classes)
 
+print(Y_testdata)
 
-score = model.evaluate(X_mydata,Y_testdata,verbose=1)
+
+score = model.evaluate(X_mydata,Y_testdata,verbose=2)
+print("score: {}".format(score))
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
+
+y_pred = model.predict(X_mydata,verbose=2)
+top_k_num = 5
+
+for i in range(len(X_mydata)):
+    max_val = 0.0
+    idx = -1
+    for j in range(n_classes):
+        if ( y_pred[i,j] > max_val ):
+            max_val = y_pred[i,j]
+            idx = j
+    print("Image {} {}: has class {} with prob {:.3f}%".format(i,files[i],idx, max_val*100))
+
+
+
 
 
 
