@@ -23,9 +23,9 @@ from keras.layers.convolutional import Conv2D
 from keras.layers.pooling import MaxPooling2D
 from keras import backend as K
 
-train_flag = True
-test_flag = True
-show_examples = True
+train_flag = False
+test_flag = False
+show_examples = False
 
 # input image dimensions
 img_rows, img_cols = 48, 48
@@ -192,7 +192,7 @@ if test_flag:
     print('Test accuracy:', score[1])
 
 
-path = 'custom_images/russia/*.jpg'
+path = 'images/russia/*.jpg'
 #path = 'custom_images/GTSRB/*.ppm'
 files = glob.glob(path)
 
@@ -221,12 +221,16 @@ with open(testresults_file) as testresults:
     reader = csv.DictReader(testresults, delimiter=',')
     cnt = 0
     for row in reader:
-        print(row)
+        print(cnt,row)
         Y_testdata[cnt] = row['class']
         cnt += 1
 
 
 print(Y_testdata)
+
+# convert class vectors to binary class matrices
+Y_testdata = keras.utils.to_categorical(Y_testdata, n_classes)
+
 
 score = model.evaluate(X_mydata,Y_testdata,verbose=1)
 print('Test loss:', score[0])
